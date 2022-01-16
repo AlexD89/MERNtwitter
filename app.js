@@ -11,7 +11,9 @@ mongoose
     .connect(db, { useNewUrlParser: true})
     .then(() => console.log("Connected to MongoDB successfully"))
     .catch(err => console.log(err));
-app.get("/", (req, res) => res.send("Hello+World"));
+app.get("/", (req, res) => {
+    console.log(res);
+    res.send("Hello+World")});
 app.use("/api/users", usersRouter);
 app.use("/api/tweets", tweetsRouter);
 app.use(bodyParser.urlencoded({ extended: false}));
