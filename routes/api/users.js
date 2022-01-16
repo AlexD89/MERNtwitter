@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { User } from "../../models/User.js";
 import keys from "../../config/keys.js"
 import jwt from 'jsonwebtoken'
+import passport from "passport";
 
 const usersRouter = express.Router();
 
@@ -63,4 +64,16 @@ usersRouter.post('/login', (req, res) => {
                 })
         })
 })
+
+
+// Private Auth Route
+
+usersRouter.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+    res.json({
+        id: req.user.id,
+        handle: req.user.handle,
+        email: req.user.email
+    });
+})
+
 export default usersRouter;
