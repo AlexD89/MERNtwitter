@@ -15,6 +15,7 @@ class LoginForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        debugger
         if (nextProps.currentUser === true) {
             this.props.history.push('/tweets');
         }
@@ -22,7 +23,6 @@ class LoginForm extends React.Component {
         this.setState({errors: nextProps.errors})
     }
 
-    //not bound
     update(field) {
         return e => this.setState({
             [field]: e.currentTarget.value
